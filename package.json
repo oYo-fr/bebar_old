@@ -1,12 +1,12 @@
 {
-  "name": "bebar",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@oyo-fr/bebar",
+  "version": "0.1.0",
+  "description": "## installation `npm install -g bebar`",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Yoann D.",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
@@ -14,5 +14,19 @@
     "glob": "^7.1.6",
     "handlebars": "^4.7.6",
     "yaml": "^1.10.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oYo-fr/bebar.git"
+  },
+  "keywords": [
+    "handlebars",
+    "mustache",
+    "template"
+  ],
+  "bugs": {
+    "url": "https://github.com/oYo-fr/bebar/issues"
+  },
+  "homepage": "https://github.com/oYo-fr/bebar#readme"
 }
