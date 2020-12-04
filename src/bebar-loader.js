@@ -26,8 +26,6 @@ class BebarLoader {
     this._filename = filename;
     this._workingdir = workingdir ? workingdir : '.';
     this._filename = path.resolve(this._workingdir, this._filename);
-    //console.log(this._filename);
-    //console.log(path.resolve(workingdir, fs.statSync(this._filename)));
   }
 
   async load(){
