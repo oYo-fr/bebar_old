@@ -1,0 +1,8 @@
+---
+persons:
+- name: Nils
+  age: 22
+- name: Teddy
+  age: 12
+- name: Nelson
+  age: 42
