@@ -1,14 +1,15 @@
 {
-  "name": "@yoann/bebar",
-  "version": "0.1.0",
+  "name": "bebar",
+  "version": "0.1.1",
   "description": "Mustache templates + data loader utility",
   "main": "cli.js",
   "bin": {
-    "bebar": "./cli.js"
+    "bebar": "./src/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sample": "node src/cli.js -f *.bebar -w ./sample"
+    "sample": "node src/cli.js -f *.bebar -w ./sample",
+    "publish": "npm publish --access public"
   },
   "author": "Yoann D.",
   "license": "ISC",
