@@ -21,6 +21,7 @@ class BebarLoader {
   _data = [];
   _templates = [];
   _allData = {};
+  outputs = [];
 
   constructor(filename, workingdir) {
     this._filename = filename;
@@ -70,8 +71,15 @@ class BebarLoader {
     Promise.resolve();
   }
 
+  async compileAll(){
+    await Promise.all(this._templates.map(p => p.compile(this._allData)));
+
+    this.outputs = this._templates.map(t => { return { "filename" : t._templateDescription.output, "output" : t._output}; });
+    Promise.resolve();
+  }
+
   async writeOutputs(){
-    await Promise.all(this._templates.map(p => p.writeOutput(this._allData)));
+    await Promise.all(this._templates.map(p => p.writeOutput()));
     Promise.resolve();
   }
 }

@@ -36,10 +36,20 @@ class TemplateLoader extends FileLoader {
     }
   }
 
-  async writeOutput(data){
+  async compile(data){
     try {
       const handleOutput = Handlebars.compile(this._templateDescription.output);
       this._templateDescription.output = path.resolve(this._workingdir, handleOutput(data));
+      Promise.resolve();
+    } catch(e) {
+      console.log(`Error compiling template ${this.output}`.red);
+      console.error(e);
+      throw e;
+    }
+  }
+
+  async writeOutput(){
+    try {
       await writeFile(this._templateDescription.output, this._output);
       Promise.resolve();
     } catch(e) {

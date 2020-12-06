@@ -31,6 +31,7 @@ class App {
 
     for(var i = 0; i < loaders.length; i++){
       await loaders[i].load();
+      await loaders[i].compileAll();
       await loaders[i].writeOutputs();
     }
     // const b = new BebarLoader('sample.bebar', './sample');
