@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { glob } = require('glob');
-const BebarLoader = require('./bebar-loader');
+const BebarLoader = require('./../lib/bebar-loader');
 const yargs = require('yargs');
 const path = require('path');
 

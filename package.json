@@ -4,11 +4,11 @@
   "description": "Mustache templates + data loader utility",
   "main": "cli.js",
   "bin": {
-    "bebar": "./src/cli.js"
+    "bebar": "./src/cli/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sample": "node src/cli.js -f *.bebar -w ./sample",
+    "sample": "node src/cli/cli.js -f *.bebar -w ./sample",
     "publish": "npm publish --access public"
   },
   "author": "Yoann D.",
