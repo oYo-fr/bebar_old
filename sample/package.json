@@ -1,0 +1,11 @@
+{
+  "name": "bebar-sample",
+  "description": "Sample bebar file",
+  "scripts": {
+    "go": "nodemon --config nodemon.json -e mustache,js,bebar,yaml,yml,json --exec bebar -f ./*.bebar -w ."
+  },
+  "author": "Yoann D.",
+  "devDependencies": {
+    "bebar": "^0.1.1",
+    "nodemon": "^2.0.6"}
+}

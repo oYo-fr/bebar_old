@@ -9,7 +9,10 @@ class HelperLoader extends FileLoader {
   async load(){
     try{
       const helper = await fileEval(this._filename);
-      Handlebars.registerHelper(this._name, helper);
+      for(var i = 0; i < Object.keys(helper).length; i++){
+        const key = Object.keys(helper)[i];
+        Handlebars.registerHelper(key, helper[key]);
+      }
       console.log("registered function " + `${this._name}`.green);
     } catch(e) {
       console.log(`Error registering function ${this._name}`.red);

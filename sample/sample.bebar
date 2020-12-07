@@ -18,4 +18,4 @@ data:
 templates:
   -
     file: ./templates/persons.mustache
-    output: ./out/{{meta.output}}.html
+    output: ./out/{{meta.output}}.md

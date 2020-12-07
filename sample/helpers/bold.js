@@ -2,7 +2,7 @@ const Handlebars = require('handlebars');
 
 module.exports = {
   bold : function(text) {
-    var result = "<b>" + Handlebars.escapeExpression(text) + "</b>";
+    var result = "**" + Handlebars.escapeExpression(text) + "**";
     return new Handlebars.SafeString(result);
   }
 };
