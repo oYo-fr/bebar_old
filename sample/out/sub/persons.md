@@ -10,8 +10,5 @@
 
 # From js
   **Nils** is 24 years old.
-  **Nils**
   **Teddy** is 14 years old.
-  **Teddy**
   **Nelson** is 45 years old.
-  **Nelson**

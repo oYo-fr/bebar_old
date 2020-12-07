@@ -50,6 +50,7 @@ class TemplateLoader extends FileLoader {
 
   async writeOutput(){
     try {
+      fs.mkdirSync(path.dirname(this._templateDescription.output), { recursive: true });
       await writeFile(this._templateDescription.output, this._output);
       Promise.resolve();
     } catch(e) {
