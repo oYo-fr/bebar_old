@@ -7,7 +7,7 @@ const readFile = util.promisify(fs.readFile);
 require('colors');
 const FileLoader = require('./file-loader');
 const path = require('path');
-const nodeEval = require('node-eval');
+const fileEval = require('file-eval');
 
 class DataLoader extends FileLoader {
   _dataDescription;
@@ -39,13 +39,12 @@ class DataLoader extends FileLoader {
           output[this._name] = this._data;
           console.log("Loaded data " + `${this._name}`.green);
           break;
-          case '.js':
-            const js = await readFile(this._filename, 'utf-8');
-            const result = nodeEval(js, '.');
-            this._data = result;
-            output[this._name] = this._data;
-            console.log("Loaded data " + `${this._name}`.green);
-            break;
+        case '.js':
+          const loaderResult = await fileEval(this._filename);
+          this._data = loaderResult;
+          output[this._name] = this._data;
+          console.log("Loaded data " + `${this._name}`.green);
+          break;
       }
     } catch(e) {
       console.log(`Error loading data ${this._name}`.red);

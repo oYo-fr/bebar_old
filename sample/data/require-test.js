@@ -1,2 +1,2 @@
-require('fs'); // <- this should not crash
+const fs = require('fs'); // <- this should not crash
 module.exports = {a: 1};
