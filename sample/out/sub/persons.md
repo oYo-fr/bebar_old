@@ -12,3 +12,6 @@
   **Nils** is 24 years old.
   **Teddy** is 14 years old.
   **Nelson** is 45 years old.
+Content of custom property from the bebar file:
+
+Custom properties are working!

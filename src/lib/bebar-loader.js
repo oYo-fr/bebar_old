@@ -62,6 +62,10 @@ class BebarLoader {
   async loadData(){
     this._data = this._bebar.data.map(dataDescription => new DataLoader(dataDescription, this._workingdir));
     await Promise.all(this._data.map(p => p.load(this._allData)));
+    this._allData = {
+      ...this._allData,
+      bebar: this._bebar
+    }
     Promise.resolve();
   }
 
