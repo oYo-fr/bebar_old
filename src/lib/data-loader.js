@@ -30,22 +30,19 @@ class DataLoader extends FileLoader {
           const json = await readFile(this._filename, 'utf-8');
           this._data = JSON.parse(json);
           output[this._name] = this._data;
-          console.log("Loaded data " + `${this._name}`.green);
           break;
         case '.yaml':
         case '.yml':
           const yaml = await readFile(this._filename, 'utf-8');
           this._data = YAML.parse(yaml);
           output[this._name] = this._data;
-          console.log("Loaded data " + `${this._name}`.green);
           break;
         case '.js':
-          const loaderResult = await fileEval(this._filename);
-          this._data = loaderResult;
+          this._data = await fileEval(this._filename);
           output[this._name] = this._data;
-          console.log("Loaded data " + `${this._name}`.green);
           break;
       }
+      console.log("Loaded data " + `${this._name}`.green);
     } catch(e) {
       console.log(`Error loading data ${this._name}`.red);
       console.error(e);
