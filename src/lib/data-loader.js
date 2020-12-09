@@ -39,6 +39,9 @@ class DataLoader extends FileLoader {
           break;
         case '.js':
           this._data = await fileEval(this._filename);
+          try{
+            this._data = await this._data();
+          }catch{}
           output[this._name] = this._data;
           break;
       }
