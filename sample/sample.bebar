@@ -4,6 +4,9 @@ partials:
   - ./partials/*.mustache
 data:
   -
+    name: require_test
+    file: ./data/require-test.js
+  -
     name: list_of_persons_json
     file: ./data/persons.json
   -
