@@ -57,6 +57,7 @@ class TemplateLoader extends FileLoader {
         output = prettier.format(output, this._templateDescription.prettify);
       }
       await writeFile(this._templateDescription.output, output);
+      console.log('-> Successfully wrote file: ' + `${this._templateDescription.output}`.black.bgGreen);
       Promise.resolve();
     } catch(e) {
       console.log(`Error writing file ${this._templateDescription.output}`.red);
