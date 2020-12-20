@@ -8,6 +8,7 @@ const path = require('path');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
+const prettier = require("prettier");
 
 class TemplateLoader extends FileLoader {
   _templateDescription;
@@ -51,7 +52,11 @@ class TemplateLoader extends FileLoader {
   async writeOutput(){
     try {
       fs.mkdirSync(path.dirname(this._templateDescription.output), { recursive: true });
-      await writeFile(this._templateDescription.output, this._output);
+      let output = this._output;
+      if(this._templateDescription.prettify){
+        output = prettier.format(output, this._templateDescription.prettify);
+      }
+      await writeFile(this._templateDescription.output, output);
       Promise.resolve();
     } catch(e) {
       console.log(`Error writing file ${this._templateDescription.output}`.red);

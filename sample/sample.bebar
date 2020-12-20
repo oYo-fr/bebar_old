@@ -25,4 +25,9 @@ templates:
   -
     file: ./templates/persons.mustache
     output: ./out/sub/{{meta.output}}.md
+  -
+    file: ./templates/typescript.mustache
+    output: ./out/sub/{{meta.output}}.ts
+    prettify:
+      parser: typescript
 customProperty: "Custom properties are working!"
