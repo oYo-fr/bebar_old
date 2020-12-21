@@ -3,7 +3,7 @@
   "description": "Sample bebar file",
   "scripts": {
     "go": "bebar -f ./*.bebar -w .",
-    "dev": "nodemon --config nodemon.json -e mustache,js,bebar,yaml,yml,json --exec bebar -f ./*.bebar -w ."
+    "dev": "nodemon --config nodemon.json -e mustache,handlebars,hbs,js,bebar,yaml,yml,json --exec bebar -f ./*.bebar -w ."
   },
   "author": "Yoann D.",
   "devDependencies": {

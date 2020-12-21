@@ -1,6 +1,6 @@
 {
   "name": "bebar",
-  "version": "0.1.8",
+  "version": "0.1.10",
   "description": "Mustache templates + data loader utility",
   "main": "cli.js",
   "bin": {

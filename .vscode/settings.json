@@ -1,0 +1,9 @@
+{
+  "files.exclude": {
+      "**/node_modules/**": true,
+      "package-*": true
+  },
+  "files.associations": {
+    "*.bebar": "yaml"
+  }
+}

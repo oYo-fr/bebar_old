@@ -4,5 +4,8 @@
       "node_modules/**": true,
       "package*": true,
       ".vscode*": true
+  },
+  "files.associations": {
+    "*.bebar": "yaml"
   }
 }

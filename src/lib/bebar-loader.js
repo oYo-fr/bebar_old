@@ -48,42 +48,57 @@ class BebarLoader {
   }
 
   async loadPartials(){
-    this._partials = this._bebar.partials.map(pattern => glob.sync(path.resolve(this._workingdir, pattern)).map(file => new PartialLoader(file))).flat();
-    await Promise.all(this._partials.map(p => p.load()));
+    if(this._bebar.partials){
+      this._partials = this._bebar.partials.map(pattern => glob.sync(path.resolve(this._workingdir, pattern)).map(file => new PartialLoader(file))).flat();
+      await Promise.all(this._partials.map(p => p.load()));
+    }
     Promise.resolve();
   }
 
   async loadHelpers(){
-    this._helpers = this._bebar.helpers.map(pattern => glob.sync(path.resolve(this._workingdir, pattern)).map(file => new HelperLoader(file))).flat();
-    await Promise.all(this._helpers.map(p => p.load()));
+    if(this._bebar.helpers){
+      this._helpers = this._bebar.helpers.map(pattern => glob.sync(path.resolve(this._workingdir, pattern)).map(file => new HelperLoader(file))).flat();
+      await Promise.all(this._helpers.map(p => p.load()));
+    }
     Promise.resolve();
   }
 
   async loadData(){
-    this._data = this._bebar.data.map(dataDescription => new DataLoader(dataDescription, this._workingdir));
-    await Promise.all(this._data.map(p => p.load(this._allData)));
-    this._allData = {
-      ...this._allData,
-      bebar: this._bebar
+    if(this._bebar.data){
+      this._data = this._bebar.data.map(dataDescription => new DataLoader(dataDescription, this._workingdir));
+      await Promise.all(this._data.map(p => p.load(this._allData)));
+      this._allData = {
+        ...this._allData,
+        bebar: this._bebar
+      }
+    }else{
+      this._allData = {
+        bebar: this._bebar
+      }
     }
     Promise.resolve();
   }
 
   async loadTemplates(){
-    this._templates = this._bebar.templates.map(templateDescription => new TemplateLoader(templateDescription, this._workingdir));
-    await Promise.all(this._templates.map(p => p.load(this._allData)));
+    if(this._bebar.templates){
+      this._templates = this._bebar.templates.map(templateDescription => new TemplateLoader(templateDescription, this._workingdir));
+      await Promise.all(this._templates.map(p => p.load(this._allData)));
+    }
     Promise.resolve();
   }
 
   async compileAll(){
-    await Promise.all(this._templates.map(p => p.compile(this._allData)));
-
-    this.outputs = this._templates.map(t => { return { "filename" : t._templateDescription.output, "output" : t._output}; });
+    if(this._templates){
+      await Promise.all(this._templates.map(p => p.compile(this._allData)));
+      this.outputs = this._templates.map(t => { return { "filename" : t._templateDescription.output, "output" : t._output}; });
+    }
     Promise.resolve();
   }
 
   async writeOutputs(){
-    await Promise.all(this._templates.map(p => p.writeOutput()));
+    if(this._templates){
+      await Promise.all(this._templates.map(p => p.writeOutput()));
+    }
     Promise.resolve();
   }
 }
