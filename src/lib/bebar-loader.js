@@ -89,7 +89,12 @@ class BebarLoader {
 
   async compileAll(){
     if(this._templates){
-      await Promise.all(this._templates.map(p => p.compile(this._allData)));
+      await Promise.all(this._templates.map(p => {
+        p.compile({
+          ...this._allData,
+          ...p._data
+        });
+      }));
       this.outputs = this._templates.map(t => { return { "filename" : t._templateDescription.output, "output" : t._output}; });
     }
     Promise.resolve();

@@ -4,6 +4,7 @@ require('colors');
 const fs = require('fs');
 const Handlebars = require('handlebars');
 const FileLoader = require('./file-loader');
+const DataLoader = require('./data-loader');
 const path = require('path');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
@@ -15,12 +16,15 @@ class TemplateLoader extends FileLoader {
   _template;
   _output;
   _workingdir;
+  _data = [];
+  _allData = {};
 
   constructor(templateDescription, workingdir) {
     templateDescription.file = path.resolve(workingdir, templateDescription.file);
     super(templateDescription.file);
     this._templateDescription = templateDescription;
     this._workingdir = workingdir;
+
   }
 
   async load(data){
@@ -28,6 +32,11 @@ class TemplateLoader extends FileLoader {
       var content = await readFile(this._filename, 'utf-8');
       this._template = Handlebars.compile(content);
       console.log("Loaded template " + `${this._name}`.green);
+
+      if(this._templateDescription.data){
+        this._data = this._templateDescription.data.map(dataDescription => new DataLoader(dataDescription, this._workingdir));
+        await Promise.all(this._data.map(p => p.load(this._allData)));
+      }
 
       this._output = this._template(data);
     } catch(e) {

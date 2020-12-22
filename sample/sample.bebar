@@ -9,7 +9,7 @@ data:
   -
     name: simple_js
     file: ./data/simple.js
-  -
+  - &list_of_persons_json
     name: list_of_persons_json
     file: ./data/persons.json
   -
@@ -25,6 +25,11 @@ templates:
   -
     file: ./templates/persons.mustache
     output: ./out/sub/{{meta.output}}.md
+  -
+    file: ./templates/persons.mustache
+    output: ./out/sub/list_of_persons_json.md
+    data:
+      - *list_of_persons_json
   -
     file: ./templates/typescript.mustache
     output: ./out/sub/{{meta.output}}.ts
