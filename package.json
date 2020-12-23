@@ -1,30 +1,74 @@
 {
   "name": "bebar",
-  "version": "0.1.10",
+  "version": "0.1.12",
+  "license": "MIT",
   "description": "Mustache templates + data loader utility",
-  "main": "cli.js",
+  "author": "Yoann Diguet",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "bin": {
-    "bebar": "./src/cli/cli.js"
+    "bebar": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
   },
   "scripts": {
-    "test": "jasmine --config=spec/config/jasmine.json",
-    "sample": "node src/cli/cli.js -f *.bebar -w ./sample",
-    "publish": "npm publish --access public"
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "publish": "npm publish --access public",
+    "sample": "node dist/index.js -f *.bebar -w ./sample",
+    "format": "prettier --write ./src/**/*.ts ./test/**/*.ts ./sample/**/*.{ts,js,json,js}"
   },
-  "author": "Yoann D.",
-  "license": "ISC",
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "module": "dist/bebar.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/bebar.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/bebar.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.9.1",
+    "husky": "^4.3.6",
+    "prettier": "2.2.1",
+    "size-limit": "^4.9.1",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.1.3"
+  },
   "dependencies": {
     "colors": "^1.4.0",
+    "colors.ts": "^1.0.20",
+    "fast-xml-parser": "^3.17.5",
     "file-eval": "^2.0.0",
     "glob": "^7.1.6",
     "handlebars": "^4.7.6",
-    "prettier": "^2.2.1",
     "yaml": "^1.10.0",
-    "yargs": "^16.1.1"
-  },
-  "devDependencies": {
-    "jasmine": "^3.6.3",
-    "jasmine-console-reporter": "^3.1.0"
+    "yargs": "^16.2.0"
   },
   "repository": {
     "type": "git",

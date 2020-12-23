@@ -5,11 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run sample",
+      "name": "Test",
       "request": "launch",
       "runtimeArgs": [
-        "run-script",
-        "sample"
+        "run",
+        "test"
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
@@ -17,26 +17,18 @@
       ],
       "type": "pwa-node"
     },
-  {
-    "name": "Test",
-    "request": "launch",
-    "runtimeArgs": [
-      "test"
-    ],
-    "runtimeExecutable": "npm",
-    "skipFiles": [
-      "<node_internals>/**"
-    ],
-    "type": "pwa-node"
-  },
     {
-      "type": "node",
+      "name": "Sample",
       "request": "launch",
-      "name": "Launch Program",
+      "runtimeArgs": [
+        "run",
+        "sample"
+      ],
+      "runtimeExecutable": "npm",
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}\\index.js"
+      "type": "pwa-node"
     }
   ]
 }

@@ -1,0 +1,19 @@
+# List of persons from data file formated with partial template `person`
+{{#each persons}}
+* {{>person person=.}}
+{{/each}}
+
+# Raw data as Yaml
+``` yaml
+{{{yaml persons}}}
+```
+
+# Raw data as Json
+``` yaml
+{{{json persons}}}
+```
+
+# Raw data as XML
+``` xml
+{{{xml persons}}}
+```

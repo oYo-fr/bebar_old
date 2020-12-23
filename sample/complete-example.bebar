@@ -1,0 +1,50 @@
+helpers:
+  - ./helpers/*.js
+partials:
+  - ./partials/*.hbs
+templates:
+  -
+    file: ./templates/persons.hbs
+    output: ./out/sub/persones-promise-result.md
+    prettify:
+      parser: markdown
+    data:
+      -
+        name: persons
+        file: ./data/promise.js
+  -
+    file: ./templates/persons.hbs
+    output: ./out/sub/persones-js-result.md
+    prettify:
+      parser: markdown
+    data:
+      -
+        name: persons
+        file: ./data/persons.js
+  -
+    file: ./templates/persons.hbs
+    output: ./out/sub/persones-json-result.md
+    prettify:
+      parser: markdown
+    data:
+      -
+        name: persons
+        file: ./data/persons.json
+  -
+    file: ./templates/persons.hbs
+    output: ./out/sub/persones-yaml-result.md
+    prettify:
+      parser: markdown
+    data:
+      -
+        name: persons
+        file: ./data/persons.yaml
+  -
+    file: ./templates/persons.hbs
+    output: ./out/sub/persones-xml-result.md
+    prettify:
+      parser: markdown
+    data:
+      -
+        name: persons
+        file: ./data/persons.xml

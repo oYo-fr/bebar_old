@@ -1,9 +1,9 @@
 {
   // The following will hide the js and map files in the editor
   "files.exclude": {
-      "node_modules/**": true,
-      "package*": true,
-      ".vscode*": true
+    "node_modules/**": true,
+    "package*": true,
+    ".vscode*": true
   },
   "files.associations": {
     "*.bebar": "yaml"

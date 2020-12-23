@@ -1,7 +1,5 @@
-{
-  "persons": [
-    { "name": "Nils", "age": 20 },
-    { "name": "Teddy", "age": 10 },
-    { "name": "Nelson", "age": 40 }
-  ]
-}
+[
+  { "name": "Nils", "age": 20 },
+  { "name": "Teddy", "age": 10 },
+  { "name": "Nelson", "age": 40 }
+]

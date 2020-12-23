@@ -1,1 +1,1 @@
-module.exports = { status: "simple js result is working" };
+module.exports = { status: 'simple js result is working' };
