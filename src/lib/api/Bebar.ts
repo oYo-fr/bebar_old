@@ -8,6 +8,7 @@ const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const writeFile = util.promisify(fs.writeFile);
+const chalk = require('chalk');
 
 export class Bebar {
   data: Datafile[] = [];
@@ -49,9 +50,9 @@ export class Bebar {
         )
       )
     );
-    await Promise.all(this.partials.map((p) => p.Load()));
     await Promise.all(this.helpers.map((h) => h.Load()));
     await Promise.all(this.data.map((d) => d.Load()));
+    await Promise.all(this.partials.map((p) => p.Load()));
     await Promise.all(this.templates.map((t) => t.Load()));
   }
 
@@ -72,6 +73,7 @@ export class Bebar {
       this.outputs.map(async (o) => {
         fs.mkdirSync(path.dirname(o.file), { recursive: true });
         await writeFile(o.file, o.content);
+        console.log(chalk.black.bgGreen.bold(`💾 Wrote file: ${o.file}`));
       })
     );
   }

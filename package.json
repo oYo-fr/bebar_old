@@ -1,13 +1,13 @@
 {
   "name": "bebar",
-  "version": "0.1.14",
+  "version": "0.1.16",
   "license": "MIT",
   "description": "Mustache templates + data loader utility",
   "author": "Yoann Diguet",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "typings": "dist/index.d.ts",
   "bin": {
-    "bebar": "./dist/index.js"
+    "bebar": "bin/bebar"
   },
   "files": [
     "dist",
@@ -53,23 +53,29 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.9.1",
+    "@types/figlet": "^1.2.1",
+    "@types/node": "^14.14.14",
     "husky": "^4.3.6",
     "size-limit": "^4.9.1",
+    "ts-node": "^9.1.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.0.3",
+    "typedoc": "^0.19.2",
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "colors": "^1.4.0",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
     "colors.ts": "^1.0.20",
+    "commander": "^6.2.1",
     "fast-xml-parser": "^3.17.5",
+    "figlet": "^1.5.0",
     "file-eval": "^2.0.0",
     "glob": "^7.1.6",
     "handlebars": "^4.7.6",
     "jsonpath": "^1.0.2",
     "prettier": "^2.2.1",
-    "yaml": "^1.10.0",
-    "yargs": "^16.2.0"
+    "yaml": "^1.10.0"
   },
   "repository": {
     "type": "git",

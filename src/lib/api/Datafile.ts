@@ -4,6 +4,7 @@ const util = require('util');
 const readFile = util.promisify(fs.readFile);
 const YAML = require('yaml');
 const fileEval = require('file-eval');
+const chalk = require('chalk');
 
 export class Datafile {
   data: any;
@@ -46,11 +47,15 @@ export class Datafile {
           } catch {}
           break;
       }
-      console.log('Loaded data ' + `${this.name}`.green);
+      console.log(
+        chalk.green(`🗄️  Loaded data ${this.name} from ${this.file}`)
+      );
       Promise.resolve();
     } catch (e) {
-      console.log(`Error loading data ${this.name}`.red);
-      console.error(e);
+      console.log(
+        chalk.red(`Error loading data ${this.name} from ${this.file}`)
+      );
+      console.error(chalk.red(e));
       Promise.reject(e);
     }
   }

@@ -5,12 +5,16 @@ const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 const path = require('path');
+const chalk = require('chalk');
 
 export class BebarParser {
   bebar!: Bebar;
   constructor(public file: string, public workingDir: string) {}
 
   public async Load() {
+    console.log('');
+    console.log(chalk.blue.bgWhite.bold(`Processing bebar file: ${this.file}`));
+
     const yaml = await readFile(
       path.resolve(this.workingDir, this.file),
       'utf-8'

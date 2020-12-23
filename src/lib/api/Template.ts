@@ -6,6 +6,7 @@ const fs = require('fs');
 const readFile = util.promisify(fs.readFile);
 const Handlebars = require('handlebars');
 const prettier = require('prettier');
+const chalk = require('chalk');
 
 export class Template {
   name: string;
@@ -40,11 +41,15 @@ export class Template {
     try {
       var content = await readFile(this.file, 'utf-8');
       this.template = Handlebars.compile(content);
-      console.log('Loaded template ' + `${this.name}`.green);
+      console.log(
+        chalk.green(`🌕 Loaded template ${this.name} from ${this.file}`)
+      );
       Promise.resolve();
     } catch (e) {
-      console.log(`Error loading template ${this.name}`.red);
-      console.error(e);
+      console.log(
+        chalk.red(`Error loading template ${this.name} from ${this.file}`)
+      );
+      console.error(chalk.red(e));
       Promise.reject(e);
     }
   }
