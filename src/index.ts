@@ -22,7 +22,7 @@ class App {
       .option('filename', {
         alias: 'f',
         type: 'string',
-        default: '*',
+        default: '**/*.bebar',
         describe: 'Input bebar file pattern',
       })
       .option('workdir', {

@@ -1,5 +1,5 @@
-export class {{@key}}{
-  {{#each properties}}
-    '{{name}}',
-  {{/each}}
+export class {{definition.name}}{
+{{#each definition.content.properties}}
+  {{@key}}: {{toTsType type}};
+{{/each}}
 }

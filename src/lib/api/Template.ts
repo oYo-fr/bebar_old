@@ -26,7 +26,12 @@ export class Template {
     if (this.data) {
       this.data = this.data.map((d) =>
         Object.assign(
-          new Datafile(path.resolve(this.workingDir, d.file), d.name)
+          new Datafile(
+            path.resolve(this.workingDir, d.file),
+            d.name,
+            d.context,
+            this.workingDir
+          )
         )
       );
       await Promise.all(this.data.map((d) => d.Load()));

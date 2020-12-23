@@ -16,4 +16,12 @@ module.exports = {
     var parser = new Parser();
     return parser.parse(obj);
   },
+  toTsType: function (type) {
+    switch (type) {
+      case 'integer':
+        return 'number';
+      default:
+        return type;
+    }
+  },
 };

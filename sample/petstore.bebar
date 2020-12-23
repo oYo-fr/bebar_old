@@ -1,15 +1,15 @@
 helpers:
   - ./helpers/*.js
-partials:
-  - ./partials/*.hbs
 templates:
   -
     file: ./templates/typescript.hbs
-    output: ./out/sub/persones-promise-result.cs
+    output: ./out/sub/{{definition.name}}.ts
     prettify:
       parser: typescript
     data:
       -
         name: definition
-        file: ./data/petstore.yaml
-        repeat: definitions
+        file: ./data/swagger-definition-select.js
+        context:
+          file: ./data/petstore.yaml
+          definition: Category

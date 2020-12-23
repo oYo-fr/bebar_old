@@ -1,6 +1,6 @@
 {
   "name": "bebar",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "license": "MIT",
   "description": "Mustache templates + data loader utility",
   "author": "Yoann Diguet",
@@ -54,7 +54,6 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.9.1",
     "husky": "^4.3.6",
-    "prettier": "2.2.1",
     "size-limit": "^4.9.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.0.3",
@@ -67,6 +66,8 @@
     "file-eval": "^2.0.0",
     "glob": "^7.1.6",
     "handlebars": "^4.7.6",
+    "jsonpath": "^1.0.2",
+    "prettier": "^2.2.1",
     "yaml": "^1.10.0",
     "yargs": "^16.2.0"
   },

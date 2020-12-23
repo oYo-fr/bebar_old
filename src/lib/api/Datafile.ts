@@ -7,9 +7,13 @@ const fileEval = require('file-eval');
 
 export class Datafile {
   data: any;
-  workingDir: string = '.';
 
-  constructor(public file: string, public name: string) {}
+  constructor(
+    public file: string,
+    public name: string,
+    public context: any,
+    public workingDir: string
+  ) {}
 
   async Load() {
     try {
@@ -30,9 +34,15 @@ export class Datafile {
           this.data = parser.parse(xml);
           break;
         case '.js':
-          this.data = await fileEval(this.file);
+          this.data = await fileEval(this.file, {
+            ...this.context,
+            workingDir: this.workingDir,
+          });
           try {
-            this.data = await this.data();
+            this.data = await this.data({
+              ...this.context,
+              workingDir: this.workingDir,
+            });
           } catch {}
           break;
       }

@@ -29,7 +29,14 @@ export class Bebar {
     );
     this.helpers = helperFiles.map((f) => Object.assign(new Helper(f)));
     this.data = this.data.map((d) =>
-      Object.assign(new Datafile(path.resolve(this.workingDir, d.file), d.name))
+      Object.assign(
+        new Datafile(
+          path.resolve(this.workingDir, d.file),
+          d.name,
+          d.context,
+          this.workingDir
+        )
+      )
     );
     this.templates = this.templates.map((t) =>
       Object.assign(
