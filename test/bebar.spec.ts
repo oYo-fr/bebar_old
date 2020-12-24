@@ -2,7 +2,7 @@ import { BebarParser } from '../src/lib/BebarParser';
 
 describe('Load sample', () => {
   it('should load the sample bebar file with promise example', async () => {
-    const parser = new BebarParser('promise-example.bebar', './sample');
+    const parser = new BebarParser('complete-example.bebar', './sample');
     await parser.Load();
     await parser.Build();
     await parser.WriteAll();

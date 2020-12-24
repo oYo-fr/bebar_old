@@ -19,7 +19,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "target": "es5",
-    "types": ["node"],
+    "types": ["jest", "node"],
     "resolveJsonModule": true
   },
   "exclude": [
