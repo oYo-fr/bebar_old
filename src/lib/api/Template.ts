@@ -15,6 +15,7 @@ export class Template {
 
   constructor(
     public file: string,
+    public content: string,
     public output: string,
     public workingDir: string = '.',
     public data?: Datafile[],
@@ -39,7 +40,9 @@ export class Template {
     }
 
     try {
-      var content = await readFile(this.file, 'utf-8');
+      var content = this.content
+        ? this.content
+        : await readFile(this.file, 'utf-8');
       this.template = Handlebars.compile(content);
       console.log(
         chalk.green(`🌕 Loaded template ${this.name} from ${this.file}`)

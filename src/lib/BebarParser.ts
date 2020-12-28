@@ -25,7 +25,7 @@ export class BebarParser {
   }
 
   public async Build() {
-    await this.bebar.Build();
+    await this.bebar.Build(this.bebar);
   }
 
   public async WriteAll() {

@@ -49,3 +49,8 @@ templates:
       -
         name: persons
         file: ./data/persons.xml
+  -
+    content: "{{{json bebar}}}"
+    output: ./out/bebarAsJson.json
+    prettify:
+      parser: json

@@ -170,6 +170,17 @@ export class Category {
 ```
 For more information about the prettifyer options, please visit [prettier.io](https://prettier.io/).
 
+You can also define direct content for your template if it is quite short and you feel you don't need to create a file with just one line in it (this wil override the `file` parameter).
+
+Example (assuming you have registered a json helper function):
+``` yaml
+templates:
+  -
+    content: "{{{json bebar}}}"
+    output: ./out/sub/{{definition.name}}.ts
+    prettify:
+      parser: json
+```
 ## Partials
 
 Partials are just a way to split your templates in little pieces with the same syntax you use in a template file.

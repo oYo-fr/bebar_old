@@ -42,7 +42,8 @@ export class Bebar {
     this.templates = this.templates.map((t) =>
       Object.assign(
         new Template(
-          path.resolve(this.workingDir, t.file),
+          t.file ? path.resolve(this.workingDir, t.file) : '',
+          t.content,
           t.output,
           this.workingDir,
           t.data,
@@ -56,8 +57,8 @@ export class Bebar {
     await Promise.all(this.templates.map((t) => t.Load()));
   }
 
-  public async Build() {
-    var allData = {};
+  public async Build(bebar: any) {
+    var allData = { bebar };
     await this.data.forEach((d) => {
       allData = {
         ...allData,
