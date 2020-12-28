@@ -1,6 +1,6 @@
 {
   "name": "bebar",
-  "version": "0.1.16",
+  "version": "0.1.18",
   "license": "MIT",
   "description": "Mustache templates + data loader utility",
   "author": "Yoann Diguet",
@@ -11,7 +11,7 @@
   },
   "files": [
     "dist",
-    "src"
+    "prefabs"
   ],
   "engines": {
     "node": ">=10"
@@ -26,7 +26,7 @@
     "analyze": "size-limit --why",
     "publish": "npm publish --access public",
     "sample": "node dist/index.js -f *.bebar -w ./sample",
-    "format": "prettier --write ./src/**/*.ts ./test/**/*.ts ./sample/**/*.{ts,js,json,js}"
+    "format": "prettier --write ./src/**/*.ts ./test/**/*.ts ./sample/**/*.{ts,js,json,js} ./prefabs/**/*.{ts,js,json,js}"
   },
   "peerDependencies": {},
   "husky": {
