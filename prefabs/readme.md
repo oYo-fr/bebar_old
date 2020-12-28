@@ -12,3 +12,4 @@ You can also choose to import only the prefabs you are interested in by importin
 List of prefabs
 - [Common prefabs](./common)
 - [Dev prefabs](./dev)
+- [Typescript prefabs](./ts)

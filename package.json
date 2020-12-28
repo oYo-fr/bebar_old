@@ -1,6 +1,6 @@
 {
   "name": "bebar",
-  "version": "0.1.39",
+  "version": "0.1.41",
   "license": "MIT",
   "description": "Mustache templates + data loader utility",
   "author": "Yoann Diguet",

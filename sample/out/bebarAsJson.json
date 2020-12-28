@@ -184,6 +184,10 @@
       "name": "helpers"
     },
     {
+      "file": "C:/git/bebar/prefabs/dev/data/swagger-definition-select.js",
+      "name": "swagger-definition-select"
+    },
+    {
       "file": "C:/git/bebar/prefabs/dev/helpers/helpers.js",
       "name": "helpers"
     }

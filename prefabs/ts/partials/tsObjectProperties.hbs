@@ -1,0 +1,10 @@
+{{#each definition.properties}}
+{{>tsComment description}}
+  {{#if properties}}
+    {{toCamelCase @key}}: {
+    {{>tsObjectProperties object=.}}
+    }
+  {{else}}
+    {{toCamelCase @key}}: {{type}}
+  {{/if}}
+{{/each}}
