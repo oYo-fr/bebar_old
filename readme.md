@@ -10,8 +10,8 @@ As an example, you may have a json or a yaml file that you want to transform to 
 
 ## usage
 `bebar -f *.bebar -w ./sample`
-* `-f` (filename, default '**/*.bebar'): Where your bebar file is (you can use wildcards to process multiple files at the same time),
-* `-w` (workdir, default '.'): the working directory that will be used in case you use relative paths in your bebar file.
+* `-f` (`--filename`, default '**/*.bebar'): Where your bebar file is (you can use wildcards to process multiple files at the same time),
+* `-w` (`--workdir`, default '.'): the working directory that will be used in case you use relative paths in your bebar file.
 
 ## Syntax sample
 

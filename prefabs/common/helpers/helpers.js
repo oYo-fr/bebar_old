@@ -39,11 +39,16 @@ module.exports = {
         return options.inverse(this);
     }
   },
-  yaml: function (obj, indent = 2) {
-    const YAML = require('yaml');
-    return YAML.stringify(obj, { indent });
+  yaml: function (obj) {
+    var YAML = require('yaml');
+    return YAML.stringify(obj);
   },
-  json: function (obj, indent = 2) {
-    return JSON.stringify(obj, null, indent);
+  json: function (obj) {
+    return JSON.stringify(obj, null, 2);
+  },
+  xml: function (obj) {
+    var Parser = require('fast-xml-parser').j2xParser;
+    var parser = new Parser();
+    return parser.parse(obj);
   },
 };

@@ -8,24 +8,8 @@ const path = require('path');
 const program = require('commander');
 const { glob } = require('glob');
 
-clear();
-console.log(chalk.blue(figlet.textSync('bebar', { horizontalLayout: 'full' })));
-
-program
-  .version('0.0.1')
-  .description(
-    'Command line utility to transform data using handlebar templates'
-  )
-  .option(
-    '-f, --filename <filename>',
-    'Input bebar file pattern',
-    './**/*.bebar'
-  )
-  .option('-w, --workdir <workdir>', 'Working directory', '.')
-  .parse(process.argv);
-
 class App {
-  async run(filename: string, workdir: string) {
+  async run(workdir: string, filename: string) {
     const loaders = glob
       .sync(path.resolve(workdir, filename))
       .map((file: any) => new BebarParser(file, workdir));
@@ -37,5 +21,30 @@ class App {
     }
   }
 }
-const app = new App();
-app.run(program.filename, program.workdir);
+
+clear();
+
+var pjson = require('./../package.json');
+console.log(chalk.blue(figlet.textSync('bebar', { horizontalLayout: 'full' })));
+console.log(pjson.version);
+
+program
+  .storeOptionsAsProperties(false)
+  .passCommandToAction(false)
+  .version(pjson.version)
+  .description(
+    'Command line utility to transform data using handlebar templates'
+  )
+  .option(
+    '-f, --filename <filename>',
+    'Input bebar file pattern',
+    './**/*.bebar'
+  )
+  .option('-w, --workdir <workdir>', 'Working directory', '.')
+  .action((options: { filename: any; workdir: any }) => {
+    console.log('Parsing files: ' + options.filename);
+    console.log('Working directory: ' + options.workdir);
+    const app = new App();
+    app.run(options.workdir, options.filename);
+  })
+  .parse();

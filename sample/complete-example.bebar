@@ -1,5 +1,6 @@
 helpers:
   - ./helpers/*.js
+  - ./../prefabs/**/*.js
 partials:
   - ./partials/*.hbs
 templates:

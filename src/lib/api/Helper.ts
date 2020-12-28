@@ -11,24 +11,22 @@ export class Helper {
   }
 
   public async Load() {
-    try {
-      const helper = await fileEval(this.file);
-      for (var i = 0; i < Object.keys(helper).length; i++) {
-        const key = Object.keys(helper)[i];
+    const helper = await fileEval(this.file);
+    for (var i = 0; i < Object.keys(helper).length; i++) {
+      const key = Object.keys(helper)[i];
+      try {
         Handlebars.registerHelper(key, helper[key]);
         console.log(
-          chalk.green(
-            `⚙️  Registered helper function ${this.name} from ${this.file}`
-          )
+          chalk.green(`⚙️  Registered helper function ${key} from ${this.file}`)
         );
+      } catch (e) {
+        console.log(
+          chalk.red(`Error registering function ${key} from ${this.file}`)
+        );
+        console.error(chalk.red(e));
+        Promise.reject(e);
       }
-      Promise.resolve();
-    } catch (e) {
-      console.log(
-        chalk.red(`Error registering function ${this.name} from ${this.file}`)
-      );
-      console.error(chalk.red(e));
-      Promise.reject(e);
     }
+    Promise.resolve();
   }
 }

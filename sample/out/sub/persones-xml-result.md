@@ -9,15 +9,16 @@
 # Raw data as Yaml
 
 ```yaml
-"0":
+&quot;0&quot;:
   name: Nils
   age: 22
-"1":
+&quot;1&quot;:
   name: Teddy
   age: 12
-"2":
+&quot;2&quot;:
   name: Nelson
   age: 42
+
 ```
 
 # Raw data as Json

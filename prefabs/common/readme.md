@@ -28,7 +28,6 @@ Returns the result of the comparison on two objects
 Returns the provided object serialized as Yaml
 #### parameters
 * ```object``` The object to serialize
-* ```number``` The indentation to use (default 2)
 #### result
 * ```string``` The result of the serialization
 
@@ -36,6 +35,5 @@ Returns the provided object serialized as Yaml
 Returns the provided object serialized as Json
 #### parameters
 * ```object``` The object to serialize
-* ```number``` The indentation to use (default 2)
 #### result
 * ```string``` The result of the serialization
