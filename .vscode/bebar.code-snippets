@@ -64,6 +64,16 @@
 		],
 		"description": "A partials description in a bebar file"
 	},
+	"Bebar nexts declaration": {
+		"scope": "yaml",
+		"prefix": "bebar-nexts",
+		"body": [
+			"next:",
+			"\t- ${1:next.hbs}",
+			"$0"
+		],
+		"description": "The next bebar file(s) to load"
+	},
 	"Handlebar if helper":{
 			"prefix": "hif",
 			"body": [

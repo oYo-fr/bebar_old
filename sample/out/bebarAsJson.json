@@ -29,8 +29,7 @@
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons",
-      "out": {}
+      "name": "persons"
     },
     {
       "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
@@ -60,8 +59,7 @@
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons",
-      "out": {}
+      "name": "persons"
     },
     {
       "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
@@ -91,8 +89,7 @@
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons",
-      "out": {}
+      "name": "persons"
     },
     {
       "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
@@ -122,8 +119,7 @@
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons",
-      "out": {}
+      "name": "persons"
     },
     {
       "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
@@ -153,8 +149,7 @@
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons",
-      "out": {}
+      "name": "persons"
     },
     {
       "file": "",
@@ -164,8 +159,7 @@
       "prettify": {
         "parser": "json"
       },
-      "name": "",
-      "out": {}
+      "name": ""
     }
   ],
   "partials": [
@@ -193,5 +187,7 @@
     }
   ],
   "workingDir": "./sample",
-  "outputs": []
+  "outputs": [],
+  "next": [],
+  "subBebars": []
 }

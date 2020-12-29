@@ -246,5 +246,45 @@ You can also choose to import only the prefabs you are interested in by importin
 
 [More information about provided helpers here](./prefabs)
 
+## Chaining bebar files
+You may have noticed: you define each template, and each template produces only one fine.
 
-Have fun using bebar files!
+But let's say you want to create a file for each array item found in a definitions node, in a swagger file. The petstore example can be found [here](./sample/data/petstore.yaml).
+You then create two files
+### The base file
+Our main file looks like this: It simply loads the swagger file, and indicates that the next bebar file to load is 'petstore.bebar.next.01.hbs'
+``` yaml
+data:
+  -
+    name: swagger
+    file: ./data/petstore.yaml
+next:
+  - ./petstore.bebar.next.01.hbs
+```
+### The chained bebar
+The chained bebar can now iterate over 'swagger.definitions', loaded in our main file, and build typescript interfaces for each definitions found in it:
+``` yaml
+partials:
+  - ./node_modules/bebar/prefabs/ts/partials/*.hbs
+helpers:
+  - ./node_modules/bebar/prefabs/dev/helpers/*.js
+templates:
+{{#each swagger.definitions}}
+  -
+    file: ./../prefabs/ts/partials/tsSwaggerDefinitionToInterface.hbs
+    output: ./out/petstore/interfaces/{{@key}}.ts
+    prettify:
+      parser: typescript
+    data:
+      -
+        name: definition
+        file: ./data/swagger-definition-select.js
+        context:
+          file: ./data/petstore.yaml
+          definition: {{@key}}
+{{/each}}
+```
+You can chain as many bebars as you want!
+
+
+Have fun using bebar!

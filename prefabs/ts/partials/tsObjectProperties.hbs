@@ -5,6 +5,6 @@
     {{>tsObjectProperties object=.}}
     }
   {{else}}
-    {{toCamelCase @key}}: {{type}}
+    {{toCamelCase @key}}: {{#if type}} {{type}} {{else}} object {{/if}}
   {{/if}}
 {{/each}}

@@ -6,6 +6,6 @@ describe('Load sample', () => {
     await parser.Load();
     await parser.Build();
     await parser.WriteAll();
-    expect(parser.bebar.outputs.length).toEqual(5);
+    expect(parser.bebar.outputs.length).toEqual(6);
   });
 });

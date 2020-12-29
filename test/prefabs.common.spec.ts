@@ -1,4 +1,5 @@
 const helpers = require('../prefabs/common/helpers/helpers');
+const YAML = require('yaml');
 
 describe('#Prefabs - helpers - common', () => {
   it('should return the length of an object', async () => {
@@ -35,16 +36,7 @@ describe('#Prefabs - helpers - common', () => {
       name: 'Edgar Allan Poe',
       dates: { birth: '1809/01/19', death: '1849/10/07' },
     };
-    expect(helpers.yaml(edgar)).toEqual(`name: Edgar Allan Poe
-dates:
-  birth: 1809/01/19
-  death: 1849/10/07
-`);
-    expect(helpers.yaml(edgar, 4)).toEqual(`name: Edgar Allan Poe
-dates:
-    birth: 1809/01/19
-    death: 1849/10/07
-`);
+    expect(helpers.yaml(edgar)).toEqual(YAML.stringify(edgar));
   });
 
   it('should return the JSON serialized result of an object', async () => {
@@ -52,19 +44,6 @@ dates:
       name: 'Edgar Allan Poe',
       dates: { birth: '1809/01/19', death: '1849/10/07' },
     };
-    expect(helpers.json(edgar)).toEqual(`{
-  "name": "Edgar Allan Poe",
-  "dates": {
-    "birth": "1809/01/19",
-    "death": "1849/10/07"
-  }
-}`);
-    expect(helpers.json(edgar, 4)).toEqual(`{
-    "name": "Edgar Allan Poe",
-    "dates": {
-        "birth": "1809/01/19",
-        "death": "1849/10/07"
-    }
-}`);
+    expect(helpers.json(edgar)).toEqual(JSON.stringify(edgar, null, 2));
   });
 });

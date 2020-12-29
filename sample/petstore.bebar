@@ -1,15 +1,6 @@
-helpers:
-  - ./helpers/*.js
-templates:
+data:
   -
-    file: ./templates/typescript.hbs
-    output: ./out/sub/{{definition.name}}.ts
-    prettify:
-      parser: typescript
-    data:
-      -
-        name: definition
-        file: ./data/swagger-definition-select.js
-        context:
-          file: ./data/petstore.yaml
-          definition: Category
+    name: swagger
+    file: ./data/petstore.yaml
+next:
+  - ./petstore.bebar.next.01.hbs

@@ -1,0 +1,19 @@
+partials:
+  - ./../prefabs/ts/partials/*.hbs
+helpers:
+  - ./../prefabs/dev/helpers/*.js
+templates:
+{{#each swagger.definitions}}
+  -
+    file: ./../prefabs/ts/partials/tsSwaggerDefinitionToInterface.hbs
+    output: ./out/petstore/interfaces/{{@key}}.ts
+    prettify:
+      parser: typescript
+    data:
+      -
+        name: definition
+        file: ./data/swagger-definition-select.js
+        context:
+          file: ./data/petstore.yaml
+          definition: {{@key}}
+{{/each}}
