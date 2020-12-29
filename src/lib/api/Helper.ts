@@ -4,6 +4,8 @@ const path = require('path');
 const chalk = require('chalk');
 
 export class Helper {
+  public registeredHelpers: string[] = [];
+
   constructor(public file: string, public name?: string) {
     if (!this.name) {
       this.name = path.parse(this.file).name;
@@ -16,6 +18,7 @@ export class Helper {
       const key = Object.keys(helper)[i];
       try {
         Handlebars.registerHelper(key, helper[key]);
+        this.registeredHelpers.push(key);
         console.log(
           chalk.green(`⚙️  Registered helper function ${key} from ${this.file}`)
         );

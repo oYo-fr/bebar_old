@@ -7,7 +7,7 @@ const fileEval = require('file-eval');
 const chalk = require('chalk');
 
 export class Datafile {
-  data: any;
+  public data: any;
 
   constructor(
     public file: string,

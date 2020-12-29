@@ -9,9 +9,9 @@ const prettier = require('prettier');
 const chalk = require('chalk');
 
 export class Template {
-  name: string;
+  public name: string;
   template!: any;
-  out!: Output;
+  public out!: Output;
 
   constructor(
     public file: string,

@@ -7,7 +7,7 @@ const readFile = util.promisify(fs.readFile);
 const path = require('path');
 
 export class BebarParser {
-  bebar!: Bebar;
+  public bebar!: Bebar;
   constructor(public file: string, public workingDir: string) {}
 
   public async Load() {
@@ -15,9 +15,12 @@ export class BebarParser {
       path.resolve(this.workingDir, this.file),
       'utf-8'
     );
-    this.bebar = Object.assign(new Bebar(), YAML.parse(yaml));
+    this.bebar = Object.assign(
+      new Bebar(path.resolve(this.workingDir, this.file), this.workingDir),
+      YAML.parse(yaml)
+    );
     this.bebar.workingDir = this.workingDir;
-    await this.bebar.LoadData(path.resolve(this.workingDir, this.file));
+    await this.bebar.LoadData();
     await this.bebar.Load();
   }
 

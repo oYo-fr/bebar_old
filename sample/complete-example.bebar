@@ -3,6 +3,10 @@ helpers:
   - ./../prefabs/**/*.js
 partials:
   - ./partials/*.hbs
+data:
+  -
+    name: persons
+    file: ./data/persons.js
 templates:
   -
     file: ./templates/persons.hbs

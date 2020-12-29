@@ -15,18 +15,19 @@ const _ = require('lodash');
 const path = require('path');
 
 export class Bebar {
-  data: Datafile[] = [];
-  templates: Template[] = [];
-  partials: Partial[] = [];
-  helpers: Helper[] = [];
-  workingDir: string = '.';
-  outputs: Output[] = [];
-  next: string[] = [];
-  private subBebars!: Bebar[];
+  public data: Datafile[] = [];
+  public templates: Template[] = [];
+  public partials: Partial[] = [];
+  public helpers: Helper[] = [];
+  public outputs: Output[] = [];
+  public next: string[] = [];
+  public nextBebars: Bebar[] = [];
 
-  public async LoadData(fromFile: string) {
+  constructor(public file: string, public workingDir: string = '.') {}
+
+  public async LoadData() {
     console.log('');
-    console.log(chalk.blue.bgWhite.bold(`Processing bebar file: ${fromFile}`));
+    console.log(chalk.blue.bgWhite.bold(`Processing bebar file: ${this.file}`));
     const self = this;
     this.data = await Promise.all(
       this.data.map((d) => {
@@ -47,7 +48,7 @@ export class Bebar {
   public async LoadNextBebars() {
     if (!this.next) return;
     const self = this;
-    this.subBebars = await Promise.all(
+    this.nextBebars = await Promise.all(
       this.next.map(async (nextBebar) => {
         const path = require('path');
         const template = await readFile(
@@ -58,8 +59,11 @@ export class Bebar {
         const bebar = Handlebars.compile(template);
         const bebarCompiled = bebar(allData);
         const yaml = YAML.parse(bebarCompiled);
-        const result = Object.assign(new Bebar(), yaml);
-        result.workingDir = self.workingDir;
+
+        const result = Object.assign(
+          new Bebar(path.resolve(this.workingDir, nextBebar), self.workingDir),
+          yaml
+        );
         await result.LoadData(result, allData);
         await result.Load();
         return result;
@@ -130,10 +134,10 @@ export class Bebar {
     await Promise.all(this.templates.map((t) => t.Build(allData)));
     this.outputs = this.templates.map((t) => t.out);
 
-    if (this.subBebars) {
-      await Promise.all(this.subBebars.map((b) => b.Build(b)));
+    if (this.nextBebars) {
+      await Promise.all(this.nextBebars.map((b) => b.Build(b)));
       this.outputs = this.outputs.concat(
-        this.subBebars.map((t) => t.outputs).flat()
+        this.nextBebars.map((b) => b.outputs).flat()
       );
     }
   }

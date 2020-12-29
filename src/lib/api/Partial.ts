@@ -6,6 +6,8 @@ const path = require('path');
 const chalk = require('chalk');
 
 export class Partial {
+  public registeredPartials: string[] = [];
+
   constructor(public file: string, public name?: string) {
     if (!this.name) {
       this.name = path.parse(this.file).name;
@@ -16,6 +18,7 @@ export class Partial {
     try {
       const content = await readFile(this.file, 'utf-8');
       Handlebars.registerPartial(this.name, content);
+      this.registeredPartials.push(`${this.name}`);
       console.log(
         chalk.green(`🌙  Registered partial ${this.name} from ${this.file}`)
       );
