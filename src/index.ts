@@ -8,6 +8,13 @@ const path = require('path');
 const program = require('commander');
 const { glob } = require('glob');
 
+export * from './lib/BebarParser';
+export * from './lib/api/Bebar';
+export * from './lib/api/Datafile';
+export * from './lib/api/Helper';
+export * from './lib/api/Output';
+export * from './lib/api/Partial';
+export * from './lib/api/Template';
 class App {
   async run(workdir: string, filename: string) {
     const loaders = glob
