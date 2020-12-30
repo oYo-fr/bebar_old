@@ -12,6 +12,7 @@ export class Template {
   public name: string;
   template!: any;
   public out!: Output;
+  private allData!: any;
 
   constructor(
     public file: string,
@@ -57,7 +58,12 @@ export class Template {
     }
   }
 
+  public async Rebuild() {
+    await this.Build(this.allData);
+  }
+
   public async Build(allData: any) {
+    this.allData = allData;
     this.out = new Output();
     var templateData = { ...allData };
     if (this.data) {

@@ -20,7 +20,7 @@ export class Partial {
       Handlebars.registerPartial(this.name, content);
       this.registeredPartials.push(`${this.name}`);
       console.log(
-        chalk.green(`🌙  Registered partial ${this.name} from ${this.file}`)
+        chalk.green(`🧩  Registered partial ${this.name} from ${this.file}`)
       );
       Promise.resolve();
     } catch (e) {
