@@ -3,50 +3,27 @@ const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 const YAML = require('yaml');
-const fileEval = require('file-eval');
 const chalk = require('chalk');
+const nodeEval = require('node-eval');
 
 export class Datafile {
   public data: any;
+  public extension: string = '';
 
   constructor(
     public file: string,
     public name: string,
     public context: any,
     public workingDir: string
-  ) {}
+  ) {
+    this.file = path.normalize(this.file);
+  }
 
   async Load() {
     try {
-      const extention = path.parse(this.file).ext.toLowerCase();
-      switch (extention) {
-        case '.json':
-          const json = await readFile(this.file, 'utf-8');
-          this.data = JSON.parse(json);
-          break;
-        case '.yaml':
-        case '.yml':
-          const yaml = await readFile(this.file, 'utf-8');
-          this.data = YAML.parse(yaml);
-          break;
-        case '.xml':
-          var parser = require('fast-xml-parser');
-          const xml = await readFile(this.file, 'utf-8');
-          this.data = parser.parse(xml);
-          break;
-        case '.js':
-          this.data = await fileEval(this.file, {
-            ...this.context,
-            workingDir: this.workingDir,
-          });
-          try {
-            this.data = await this.data({
-              ...this.context,
-              workingDir: this.workingDir,
-            });
-          } catch {}
-          break;
-      }
+      const content = await readFile(this.file, 'utf-8');
+      this.extension = path.parse(this.file).ext.toLowerCase();
+      await this.HandleContent(content);
       console.log(
         chalk.green(`🗄️  Loaded data ${this.name} from ${this.file}`)
       );
@@ -58,5 +35,39 @@ export class Datafile {
       console.error(chalk.red(e));
       Promise.reject(e);
     }
+  }
+
+  public async HandleContent(content: string) {
+    switch (this.extension) {
+      case '.json':
+        this.data = JSON.parse(content);
+        break;
+      case '.yaml':
+      case '.yml':
+        this.data = YAML.parse(content);
+        break;
+      case '.xml':
+        var parser = require('fast-xml-parser');
+        this.data = parser.parse(content);
+        break;
+      case '.js':
+        const context = {
+          ...this.context,
+          workingDir: this.workingDir,
+        };
+        this.data = await nodeEval(content, this.file, context);
+        try {
+          this.data = await this.data(context);
+        } catch {}
+        break;
+    }
+  }
+
+  public async HandleRefresh(file: string, content: string): Promise<boolean> {
+    if (this.file === file) {
+      await this.HandleContent(content);
+      return true;
+    }
+    return false;
   }
 }

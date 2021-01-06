@@ -12,16 +12,16 @@ export class Template {
   public name: string;
   template!: any;
   public out!: Output;
-  private allData!: any;
 
   constructor(
     public file: string,
     public content: string,
     public output: string,
     public workingDir: string = '.',
-    public data?: Datafile[],
+    public data: Datafile[] = [],
     public prettify?: any
   ) {
+    this.file = path.normalize(this.file);
     this.name = path.parse(this.file).name;
   }
 
@@ -44,7 +44,7 @@ export class Template {
       var content = this.content
         ? this.content
         : await readFile(this.file, 'utf-8');
-      this.template = Handlebars.compile(content);
+      this.template = await Handlebars.compile(content);
       console.log(
         chalk.green(`🌕 Loaded template ${this.name} from ${this.file}`)
       );
@@ -58,12 +58,7 @@ export class Template {
     }
   }
 
-  public async Rebuild() {
-    await this.Build(this.allData);
-  }
-
   public async Build(allData: any) {
-    this.allData = allData;
     this.out = new Output();
     var templateData = { ...allData };
     if (this.data) {
@@ -75,11 +70,35 @@ export class Template {
       });
     }
 
-    this.out.content = this.template(templateData);
+    this.out.content = await this.template(templateData);
     if (this.prettify) {
       this.out.content = prettier.format(this.out.content, this.prettify);
     }
-    const outputFilename = Handlebars.compile(this.output);
+    const outputFilename = await Handlebars.compile(this.output);
     this.out.file = path.resolve(this.workingDir, outputFilename(templateData));
+  }
+
+  public async refreshData(file: string, content: string): Promise<boolean> {
+    let refresHandled = false;
+    await Promise.all(
+      this.data.map(async (d) => {
+        if (await d.HandleRefresh(file, content)) {
+          refresHandled = true;
+        }
+      })
+    );
+    return refresHandled;
+  }
+
+  public async HandleRefresh(file: string, content: string): Promise<boolean> {
+    const dataRefreshed = await this.refreshData(file, content);
+    if (dataRefreshed || file === this.file) {
+      if (file === this.file) {
+        this.content = content;
+        this.template = await Handlebars.compile(content);
+      }
+      return true;
+    }
+    return false;
   }
 }

@@ -1,193 +1,84 @@
 {
-  "data": [],
+  "helpers": ["./helpers/*.js", "./../prefabs/**/*.js"],
+  "partials": ["./partials/*.hbs"],
+  "data": [
+    {
+      "name": "persons",
+      "file": "./data/persons.js"
+    }
+  ],
   "templates": [
     {
-      "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
+      "file": "./templates/persons.hbs",
       "output": "./out/sub/persones-promise-result.md",
-      "workingDir": "./sample",
-      "data": [
-        {
-          "file": "C:\\git\\bebar\\sample\\data\\promise.js",
-          "name": "persons",
-          "workingDir": "./sample",
-          "data": [
-            {
-              "name": "Nils",
-              "age": 24
-            },
-            {
-              "name": "Teddy",
-              "age": 14
-            },
-            {
-              "name": "Nelson",
-              "age": 45
-            }
-          ]
-        }
-      ],
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons"
+      "data": [
+        {
+          "name": "persons",
+          "file": "./data/promise.js"
+        }
+      ]
     },
     {
-      "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
+      "file": "./templates/persons.hbs",
       "output": "./out/sub/persones-js-result.md",
-      "workingDir": "./sample",
-      "data": [
-        {
-          "file": "C:\\git\\bebar\\sample\\data\\persons.js",
-          "name": "persons",
-          "workingDir": "./sample",
-          "data": [
-            {
-              "name": "Nils",
-              "age": 24
-            },
-            {
-              "name": "Teddy",
-              "age": 14
-            },
-            {
-              "name": "Nelson",
-              "age": 45
-            }
-          ]
-        }
-      ],
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons"
+      "data": [
+        {
+          "name": "persons",
+          "file": "./data/persons.js"
+        }
+      ]
     },
     {
-      "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
+      "file": "./templates/persons.hbs",
       "output": "./out/sub/persones-json-result.md",
-      "workingDir": "./sample",
-      "data": [
-        {
-          "file": "C:\\git\\bebar\\sample\\data\\persons.json",
-          "name": "persons",
-          "workingDir": "./sample",
-          "data": [
-            {
-              "name": "Nils",
-              "age": 20
-            },
-            {
-              "name": "Teddy",
-              "age": 10
-            },
-            {
-              "name": "Nelson",
-              "age": 40
-            }
-          ]
-        }
-      ],
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons"
+      "data": [
+        {
+          "name": "persons",
+          "file": "./data/persons.json"
+        }
+      ]
     },
     {
-      "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
+      "file": "./templates/persons.hbs",
       "output": "./out/sub/persones-yaml-result.md",
-      "workingDir": "./sample",
-      "data": [
-        {
-          "file": "C:\\git\\bebar\\sample\\data\\persons.yaml",
-          "name": "persons",
-          "workingDir": "./sample",
-          "data": [
-            {
-              "name": "Nils",
-              "age": 22
-            },
-            {
-              "name": "Teddy",
-              "age": 12
-            },
-            {
-              "name": "Nelson",
-              "age": 42
-            }
-          ]
-        }
-      ],
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons"
+      "data": [
+        {
+          "name": "persons",
+          "file": "./data/persons.yaml"
+        }
+      ]
     },
     {
-      "file": "C:\\git\\bebar\\sample\\templates\\persons.hbs",
+      "file": "./templates/persons.hbs",
       "output": "./out/sub/persones-xml-result.md",
-      "workingDir": "./sample",
-      "data": [
-        {
-          "file": "C:\\git\\bebar\\sample\\data\\persons.xml",
-          "name": "persons",
-          "workingDir": "./sample",
-          "data": {
-            "0": {
-              "name": "Nils",
-              "age": 22
-            },
-            "1": {
-              "name": "Teddy",
-              "age": 12
-            },
-            "2": {
-              "name": "Nelson",
-              "age": 42
-            }
-          }
-        }
-      ],
       "prettify": {
         "parser": "markdown"
       },
-      "name": "persons"
+      "data": [
+        {
+          "name": "persons",
+          "file": "./data/persons.xml"
+        }
+      ]
     },
     {
-      "file": "",
       "content": "{{{json bebar}}}",
       "output": "./out/bebarAsJson.json",
-      "workingDir": "./sample",
       "prettify": {
         "parser": "json"
-      },
-      "name": ""
+      }
     }
-  ],
-  "partials": [
-    {
-      "file": "C:/git/bebar/sample/partials/person.hbs",
-      "name": "person"
-    }
-  ],
-  "helpers": [
-    {
-      "file": "C:/git/bebar/sample/helpers/helpers.js",
-      "name": "helpers"
-    },
-    {
-      "file": "C:/git/bebar/prefabs/common/helpers/helpers.js",
-      "name": "helpers"
-    },
-    {
-      "file": "C:/git/bebar/prefabs/dev/data/swagger-definition-select.js",
-      "name": "swagger-definition-select"
-    },
-    {
-      "file": "C:/git/bebar/prefabs/dev/helpers/helpers.js",
-      "name": "helpers"
-    }
-  ],
-  "workingDir": "./sample",
-  "outputs": [],
-  "next": [],
-  "subBebars": []
+  ]
 }

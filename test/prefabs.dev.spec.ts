@@ -1,6 +1,5 @@
-const helpers = require('../prefabs/dev/helpers/helpers');
-
 describe('#Prefabs - helpers - dev', () => {
+  const helpers = require('../prefabs/dev/helpers/helpers');
   it('should return the pascal case version of a string', async () => {
     expect(helpers.toPascalCase('my-variable')).toEqual('MyVariable');
     expect(helpers.toPascalCase('my variable')).toEqual('MyVariable');
