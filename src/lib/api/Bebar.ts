@@ -99,6 +99,7 @@ export class Bebar {
           t.content,
           t.output,
           this.workingDir,
+          t.name,
           t.data,
           t.prettify
         )

@@ -9,7 +9,6 @@ const prettier = require('prettier');
 const chalk = require('chalk');
 
 export class Template {
-  public name: string;
   template!: any;
   public out!: Output;
 
@@ -18,11 +17,14 @@ export class Template {
     public content: string,
     public output: string,
     public workingDir: string = '.',
+    public name: string = '',
     public data: Datafile[] = [],
     public prettify?: any
   ) {
     this.file = path.normalize(this.file);
-    this.name = path.parse(this.file).name;
+    if (!this.name || this.name === '') {
+      this.name = path.parse(this.file).name;
+    }
   }
 
   public async Load() {
